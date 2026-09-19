@@ -1,6 +1,6 @@
 {
   "name": "xianxiaozhu",
-  "version": "4.1.0",
+  "version": "4.0.0",
   "description": "仙小助 - 生涯规划助手",
   "main": "main.js",
   "author": "仙小助",
@@ -8,8 +8,7 @@
     "start": "electron .",
     "build": "electron-builder",
     "build:win": "electron-builder --win",
-    "build:mac": "electron-builder --mac",
-    "build:all": "electron-builder --win --mac"
+    "build:mac": "electron-builder --mac"
   },
   "devDependencies": {
     "electron": "^31.0.0",
@@ -48,7 +47,6 @@
         { "target": "zip", "arch": ["x64", "arm64"] }
       ],
       "category": "public.app-category.productivity"
-    },
     }
   }
 }
