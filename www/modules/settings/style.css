@@ -1,0 +1,77 @@
+.settings-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px dashed var(--border); flex-wrap: wrap; }
+.settings-row:last-child { border-bottom: none; }
+.settings-row > label { font-size: 12.5px; color: var(--text-sec); font-weight: 700; min-width: 70px; }
+
+.accent-picker { display: flex; gap: 8px; }
+.accent-dot { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: var(--t); }
+.accent-dot:hover { transform: scale(1.12); }
+.accent-dot.active { border-color: var(--text); transform: scale(1.1); }
+
+.theme-picker { display: flex; gap: 6px; }
+.theme-btn { padding: 8px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--bg-input); color: var(--text-sec); transition: var(--t); }
+.theme-btn:hover { border-color: var(--border-l); color: var(--text); }
+.theme-btn.active { background: linear-gradient(135deg, var(--accent), var(--accent-h)); color: #fff; border-color: transparent; }
+
+.settings-form .form-row { display: flex; gap: 11px; align-items: center; margin-bottom: 11px; flex-wrap: wrap; }
+.settings-form label { font-size: 12px; color: var(--text-sec); min-width: 42px; font-weight: 600; }
+.settings-form .input { max-width: 130px; }
+.settings-form .input.full { max-width: 100%; }
+
+.hint-box { background: rgba(96,165,250,.08); border-left: 3px solid var(--info); padding: 11px 14px; border-radius: 9px; font-size: 11.5px; color: var(--text-sec); line-height: 1.7; margin-bottom: 13px; }
+.hint-box code { background: var(--bg-input); padding: 2px 7px; border-radius: 5px; font-family: var(--mono); font-size: 11px; color: var(--accent); }
+
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; }
+.stat-item { background: var(--bg-input); border: 1px solid var(--border); border-radius: 12px; padding: 14px 10px; text-align: center; transition: var(--t); }
+.stat-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+.stat-item.highlight { background: linear-gradient(135deg, var(--accent-soft), var(--bg-input)); border-color: var(--accent); }
+.stat-num { display: block; font-size: 22px; font-weight: 800; font-family: var(--mono); line-height: 1.1; }
+.stat-name { display: block; font-size: 11px; color: var(--text-muted); font-weight: 700; margin-top: 4px; }
+
+.settings-metric-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 13px; background: var(--bg-input); border-radius: 10px; border: 1px solid var(--border); font-size: 12.5px; }
+/* ⭐ 分享卡片的统计行 */
+.share-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.share-stat-item {
+  text-align: center;
+}
+.share-stat-num {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--accent);
+  line-height: 1.1;
+}
+.share-stat-label {
+  display: block;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 3px;
+}
+@media (max-width: 600px) {
+  .share-stats { grid-template-columns: repeat(3, 1fr); }
+}
+/* ⭐ 智能补全额度进度条 */
+.quota-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-input);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.quota-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width .4s ease, background .3s ease;
+}
+/* END OF FILE */

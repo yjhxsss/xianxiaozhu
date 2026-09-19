@@ -1,0 +1,285 @@
+.summary-page { display: flex; flex-direction: column; gap: 14px; }
+
+.summary-range-bar { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; padding: 14px 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; }
+.summary-range-btn { padding: 8px 16px; border-radius: 10px; font-size: 12.5px; font-weight: 700; cursor: pointer; border: 1px solid var(--border); background: var(--bg-input); color: var(--text-sec); transition: var(--t); }
+.summary-range-btn:hover { border-color: var(--border-l); color: var(--text); }
+.summary-range-btn.active { background: linear-gradient(135deg, var(--accent), var(--accent-h)); color: #fff; border-color: transparent; }
+.summary-range-dates { display: flex; gap: 9px; align-items: center; margin-left: auto; flex-wrap: wrap; }
+.summary-range-dates .input { width: 140px; padding: 8px 11px; }
+
+.summary-body { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 22px; }
+.summary-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+.summary-title { font-size: 17px; font-weight: 800; }
+.summary-days { font-size: 12px; color: var(--text-muted); font-weight: 600; padding: 3px 10px; border-radius: 8px; background: var(--bg-input); }
+
+.summary-overview { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
+.so-item { background: var(--bg-input); border-radius: 13px; padding: 15px; border: 1px solid var(--border); display: flex; align-items: center; gap: 13px; }
+.so-icon { font-size: 30px; flex-shrink: 0; }
+.so-num { font-size: 22px; font-weight: 800; font-family: var(--mono); line-height: 1.1; }
+.so-label { font-size: 11px; color: var(--text-muted); font-weight: 700; margin-top: 3px; text-transform: uppercase; letter-spacing: .4px; }
+
+.summary-section { margin-bottom: 20px; }
+.summary-section-title { font-size: 14.5px; font-weight: 800; margin-bottom: 11px; }
+
+.compare-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 11px; }
+.compare-item { background: var(--bg-input); border-radius: 12px; padding: 13px 15px; border: 1px solid var(--border); }
+.compare-label { font-size: 11.5px; color: var(--text-muted); font-weight: 700; margin-bottom: 7px; }
+.compare-values { display: flex; align-items: baseline; gap: 9px; }
+.cmp-cur { font-size: 21px; font-weight: 800; font-family: var(--mono); }
+.cmp-prev { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+.cmp-diff { font-size: 12.5px; font-weight: 800; margin-left: auto; }
+.cmp-diff.up { color: var(--success); }
+.cmp-diff.down { color: var(--danger); }
+
+.summary-moods { display: flex; gap: 9px; flex-wrap: wrap; }
+.summary-mood { font-size: 30px; padding: 7px 16px; background: var(--bg-input); border-radius: 15px; border: 1px solid var(--border); display: flex; align-items: center; gap: 6px; }
+.sm-count { font-size: 11.5px; color: var(--text-muted); font-weight: 800; }
+
+.summary-metrics { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 11px; }
+.summary-metric { background: var(--bg-input); border-radius: 12px; padding: 13px 15px; border: 1px solid var(--border); }
+.sm-name { font-size: 11.5px; color: var(--text-muted); font-weight: 700; margin-bottom: 5px; }
+.sm-value { font-size: 21px; font-weight: 800; font-family: var(--mono); line-height: 1.1; }
+.sm-unit { font-size: 11.5px; color: var(--text-sec); font-weight: 600; margin-left: 3px; }
+
+.summary-diary { padding: 12px 14px; background: var(--bg-input); border-radius: 11px; margin-bottom: 8px; font-size: 12.5px; line-height: 1.65; color: var(--text-sec); border: 1px solid var(--border); }
+.sd-date { font-size: 12px; color: var(--accent); font-weight: 700; margin-right: 8px; font-family: var(--mono); }
+.sd-more { font-size: 12.5px; color: var(--text-muted); text-align: center; margin-top: 8px; }
+.summary-empty { text-align: center; padding: 44px; color: var(--text-muted); font-size: 13px; }
+
+/* ============ 图表区 ============ */
+.summary-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .summary-charts { grid-template-columns: 1fr; }
+}
+.summary-chart-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px 10px;
+}
+.sc-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-sec);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.summary-canvas {
+  width: 100%;
+  display: block;
+}
+
+/* ============ 一年热力图 ============ */
+.summary-heatmap-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+.hm-wrap {
+  display: inline-block;
+  min-width: 100%;
+}
+.hm-months {
+  display: flex;
+  gap: 3px;
+  margin-left: 24px;
+  margin-bottom: 6px;
+}
+.hm-month-cell {
+  width: 12px;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  overflow: visible;
+}
+.hm-body {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+.hm-weekdays {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 9px;
+  color: var(--text-muted);
+  font-weight: 600;
+  width: 18px;
+  flex-shrink: 0;
+}
+.hm-weekdays > div {
+  height: 12px;
+  line-height: 12px;
+  text-align: right;
+}
+.hm-grid {
+  display: flex;
+  gap: 3px;
+}
+.hm-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.hm-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--bg-card-solid);
+  border: 1px solid transparent;
+  transition: transform .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.hm-cell:hover:not(.future) {
+  transform: scale(1.35);
+  border-color: var(--accent);
+}
+.hm-cell.l1 { background: rgba(124,108,248,.28); }
+.hm-cell.l2 { background: rgba(124,108,248,.55); }
+.hm-cell.l3 { background: rgba(124,108,248,.8); }
+.hm-cell.l4 { background: linear-gradient(135deg, var(--accent), var(--accent-h)); }
+.hm-cell.future { opacity: .15; }
+.hm-cell.today { border-color: var(--text); border-width: 1.5px; }
+
+.hm-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  justify-content: flex-end;
+}
+.hm-legend .hm-cell {
+  width: 10px;
+  height: 10px;
+}
+.hm-empty-hint {
+  margin-top: 10px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .summary-overview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* ⭐ 心情趋势图 tooltip */
+.mood-chart-tooltip {
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+/* ================================================================
+ * ⭐ 健康汇总卡
+ * ================================================================ */
+.summary-health-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+@media (max-width: 800px) {
+  .summary-health-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.summary-health-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg-input);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.summary-health-cell.sleep    { border-left: 3px solid #7c6cf8; }
+.summary-health-cell.exercise { border-left: 3px solid #4ade80; }
+.summary-health-cell.water    { border-left: 3px solid #60a5fa; }
+.summary-health-cell.diet     { border-left: 3px solid #f59e0b; }
+
+.shc-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.shc-body { flex: 1; min-width: 0; }
+.shc-value {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--mono);
+  line-height: 1.1;
+  color: var(--text);
+}
+.shc-unit {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-left: 2px;
+}
+.shc-label {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.shc-sub {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+/* 三大营养素 */
+.summary-macro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.summary-macro-cell {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+}
+.summary-macro-cell.p { border-left: 3px solid #f472b6; }
+.summary-macro-cell.c { border-left: 3px solid #fbbf24; }
+.summary-macro-cell.f { border-left: 3px solid #60a5fa; }
+.smc-label {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+.smc-value {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--text);
+  margin-top: 3px;
+  line-height: 1.1;
+}
+.smc-unit {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* 心情趋势图 tooltip（兼容暗色） */
+.mood-chart-tooltip {
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}

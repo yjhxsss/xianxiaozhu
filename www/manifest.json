@@ -1,0 +1,48 @@
+{
+  "name": "仙小助 · 生涯规划助手",
+  "short_name": "仙小助",
+  "description": "生涯规划与自我提升助手 —— 随笔、心情、待办、目标、习惯、专注、总结",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0d1a",
+  "theme_color": "#7c6cf8",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "写随笔",
+      "short_name": "随笔",
+      "url": "./index.html?goto=diary",
+      "description": "快速打开主页写随笔"
+    },
+    {
+      "name": "专注计时",
+      "short_name": "计时器",
+      "url": "./index.html?goto=timer",
+      "description": "开始一个番茄钟"
+    },
+    {
+      "name": "看总结",
+      "short_name": "总结",
+      "url": "./index.html?goto=summary",
+      "description": "查看数据总结"
+    }
+  ]
+}

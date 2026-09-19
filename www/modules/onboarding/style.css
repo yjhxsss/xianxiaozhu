@@ -1,0 +1,111 @@
+/* ============ onboarding 模块样式 ============ */
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+}
+.onboarding-overlay.dim {
+  background: rgba(0,0,0,.78);
+  pointer-events: auto;
+}
+
+.onboarding-spotlight {
+  position: absolute;
+  border-radius: 16px;
+  animation: spotlight-pulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.onboarding-bubble {
+  position: absolute;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.7);
+  pointer-events: auto;
+  max-width: 360px;
+  animation: ob-in .35s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes ob-in {
+  from { opacity: 0; transform: translateY(10px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+.onboarding-bubble .ob-step {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.onboarding-bubble .ob-title {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.onboarding-bubble .ob-title .ob-icon { font-size: 24px; }
+.onboarding-bubble .ob-desc {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.onboarding-bubble .ob-tips {
+  background: var(--bg-input);
+  border-radius: 10px;
+  padding: 10px 13px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--text-sec);
+  line-height: 1.65;
+  border-left: 3px solid var(--accent);
+}
+.onboarding-bubble .ob-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.onboarding-progress {
+  display: flex;
+  gap: 5px;
+  flex: 1;
+  align-items: center;
+  min-width: 120px;
+}
+.onboarding-progress .op-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border-l);
+  transition: all .3s;
+}
+.onboarding-progress .op-dot.active {
+  background: var(--accent);
+  width: 22px;
+  border-radius: 4px;
+}
+
+.onboarding-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@keyframes spotlight-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(124,108,248,.9), 0 0 0 9999px rgba(0,0,0,.75);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(124,108,248,.5), 0 0 0 9999px rgba(0,0,0,.75);
+  }
+}

@@ -1,0 +1,648 @@
+/* ============ health 模块样式 ============ */
+
+.health-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 800px) {
+  .health-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.health-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: var(--t);
+  cursor: pointer;
+}
+.health-stat-card:hover {
+  border-color: var(--border-l);
+  transform: translateY(-2px);
+}
+.health-stat-card.sleep    { border-left: 3px solid var(--accent); }
+.health-stat-card.exercise { border-left: 3px solid var(--success); }
+.health-stat-card.water    { border-left: 3px solid var(--info); }
+.health-stat-card.diet     { border-left: 3px solid var(--warning); }
+
+.hsc-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+}
+.health-stat-card.exercise .hsc-icon { background: rgba(74,222,128,.14); }
+.health-stat-card.water    .hsc-icon { background: rgba(96,165,250,.14); }
+.health-stat-card.diet     .hsc-icon { background: rgba(251,191,36,.14); }
+
+.hsc-body { flex: 1; min-width: 0; }
+.hsc-value {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--mono);
+  line-height: 1.1;
+  color: var(--text);
+}
+.hsc-unit {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-left: 2px;
+}
+.hsc-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.hsc-cmp {
+  font-size: 10px;
+  font-weight: 800;
+  margin-top: 3px;
+  font-family: var(--mono);
+}
+.hsc-cmp.up   { color: var(--success); }
+.hsc-cmp.down { color: var(--danger); }
+.hsc-cmp.flat { color: var(--text-muted); }
+
+/* 进度环 */
+.hsc-ring-wrap {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+.hsc-ring { display: block; }
+.hsc-ring-track { stroke: var(--border-l); opacity: .5; }
+.hsc-ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.hsc-ring-pct {
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--accent);
+}
+
+/* ============ 日期栏 ============ */
+.health-date-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.health-date-label {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+}
+.health-date-input {
+  max-width: 140px;
+  padding: 5px 10px !important;
+  font-size: 12px !important;
+  font-family: var(--mono);
+}
+
+/* ============ 健康目标 ============ */
+.health-goal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.health-goal-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: var(--t);
+}
+.health-goal-item:hover {
+  border-color: var(--accent);
+  background: var(--bg-hover);
+}
+.hgi-icon { font-size: 20px; flex-shrink: 0; }
+.hgi-info { flex: 1; min-width: 0; }
+.hgi-name { font-size: 12.5px; font-weight: 700; }
+.hgi-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-family: var(--mono);
+}
+.hgi-bar {
+  height: 4px;
+  background: var(--bg-card-solid);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+.hgi-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-h));
+  border-radius: 2px;
+  transition: width .6s ease;
+}
+.hgi-pct {
+  font-size: 12px;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--accent);
+}
+
+/* 目标编辑弹窗 */
+.health-goal-edit-row {
+  display: grid;
+  grid-template-columns: 32px 70px 1fr 60px;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.health-goal-edit-row:last-child { border-bottom: none; }
+.hge-icon { font-size: 18px; text-align: center; }
+.hge-name { font-size: 12.5px; font-weight: 700; }
+.hge-input { padding: 6px 10px !important; font-size: 12px !important; text-align: center; }
+.hge-unit { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
+
+/* ============ 快捷记录按钮 ============ */
+.health-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (max-width: 700px) {
+  .health-quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.health-quick-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--t);
+}
+.health-quick-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  background: var(--accent-soft);
+}
+.health-quick-btn.sleep:hover    { border-color: var(--accent); }
+.health-quick-btn.exercise:hover { border-color: var(--success); background: rgba(74,222,128,.08); }
+.health-quick-btn.water:hover    { border-color: var(--info); background: rgba(96,165,250,.08); }
+.health-quick-btn.diet:hover     { border-color: var(--warning); background: rgba(251,191,36,.08); }
+
+.hqb-icon { font-size: 26px; line-height: 1; }
+.hqb-text { font-size: 12px; font-weight: 700; }
+
+/* ============ 今日记录列表 ============ */
+.health-record-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  margin-bottom: 6px;
+  transition: var(--t);
+}
+.health-record-item:hover {
+  border-color: var(--border-l);
+  transform: translateX(3px);
+}
+.hri-icon { font-size: 20px; flex-shrink: 0; }
+.hri-body { flex: 1; min-width: 0; }
+.hri-title {
+  font-size: 13px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hri-detail {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hri-time {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.hri-actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: var(--t);
+}
+.health-record-item:hover .hri-actions { opacity: 1; }
+
+/* ============ 弹窗通用 ============ */
+.hm-label {
+  font-size: 12.5px;
+  color: var(--text-sec);
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.health-quality-row {
+  display: flex;
+  gap: 6px;
+}
+.quality-btn {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  filter: grayscale(1) opacity(.45);
+  transition: var(--t);
+}
+.quality-btn.active {
+  filter: none;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.health-sport-row,
+.health-meal-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.sport-chip,
+.meal-chip {
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-sec);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--t);
+}
+.sport-chip:hover,
+.meal-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.sport-chip.active,
+.meal-chip.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.health-hint-box {
+  background: var(--bg-input);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: var(--text-sec);
+  margin-bottom: 4px;
+  border-left: 3px solid var(--accent);
+}
+.health-hint-box b {
+  color: var(--accent);
+  font-family: var(--mono);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+/* ================================================================
+ * ⭐ 图表：近 7 天趋势
+ * ================================================================ */
+.health-charts-trend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 900px) {
+  .health-charts-trend { grid-template-columns: 1fr; }
+}
+.health-chart-cell {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px 6px;
+}
+.health-chart-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sec);
+  margin-bottom: 6px;
+}
+.health-canvas {
+  width: 100%;
+  height: 130px;
+  display: block;
+}
+
+/* ================================================================
+ * ⭐ 环形图：饮食 / 运动分布
+ * ================================================================ */
+.health-charts-donut {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .health-charts-donut { grid-template-columns: 1fr; }
+}
+.health-donut-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+}
+.health-canvas-donut {
+  width: 100%;
+  max-width: 200px;
+  height: 160px;
+  display: block;
+}
+.health-donut-legend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+.hdl-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-sec);
+  font-weight: 600;
+}
+.hdl-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ================================================================
+ * ⭐ 周统计
+ * ================================================================ */
+.health-week-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (max-width: 700px) {
+  .health-week-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.health-week-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  background: var(--bg-input);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.hwk-icon { font-size: 20px; line-height: 1; }
+.hwk-value {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--mono);
+  color: var(--text);
+  line-height: 1.1;
+  margin-top: 4px;
+}
+.hwk-unit {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-left: 2px;
+}
+.hwk-label {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+/* ================================================================
+ * ⭐ 健康目标：绑定标签 & 绑定编辑
+ * ================================================================ */
+
+.hgi-link {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(124,108,248,.25);
+}
+.hgi-link.warn {
+  background: rgba(251,191,36,.12);
+  color: var(--warning);
+  border-color: rgba(251,191,36,.35);
+}
+
+/* 目标编辑块（每个目标一组） */
+.health-goal-edit-block {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.health-goal-edit-block:last-child {
+  border-bottom: none;
+}
+
+.health-goal-link-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 32px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.hgl-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.hgl-type {
+  max-width: 100px;
+  padding: 5px 10px !important;
+  font-size: 11.5px !important;
+}
+.hgl-id {
+  flex: 1;
+  min-width: 140px;
+  padding: 5px 10px !important;
+  font-size: 11.5px !important;
+}
+/* ================================================================
+ * ⭐ 营养素面板
+ * ================================================================ */
+.health-nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (max-width: 700px) {
+  .health-nutrition-grid { grid-template-columns: 1fr; }
+}
+.health-nutrition-cell {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+}
+.health-nutrition-cell.p { border-left: 3px solid #f472b6; }
+.health-nutrition-cell.c { border-left: 3px solid #fbbf24; }
+.health-nutrition-cell.f { border-left: 3px solid #60a5fa; }
+.hnc-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.hnc-value {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: var(--mono);
+  line-height: 1.1;
+  color: var(--text);
+  margin: 4px 0 8px;
+}
+.hnc-unit {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-left: 3px;
+}
+.hnc-bar {
+  height: 5px;
+  background: var(--bg-card-solid);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.hnc-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .8s cubic-bezier(.2,.8,.2,1);
+}
+.health-nutrition-cell.p .hnc-bar-fill { background: linear-gradient(90deg, #f472b6, #ec4899); }
+.health-nutrition-cell.c .hnc-bar-fill { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+.health-nutrition-cell.f .hnc-bar-fill { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
+.hnc-pct {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-family: var(--mono);
+}
+.health-nutrition-hint {
+  margin-top: 12px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  background: var(--bg-input);
+  border-radius: 8px;
+  border-left: 3px solid var(--info);
+  line-height: 1.6;
+}
+
+/* ================================================================
+ * ⭐ 饮食输入 4 列布局
+ * ================================================================ */
+.health-diet-inputs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+@media (max-width: 700px) {
+  .health-diet-inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.health-diet-input-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.health-diet-input-cell label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.health-diet-input-cell .input {
+  padding: 6px 8px !important;
+  font-size: 12px !important;
+  text-align: center;
+  font-family: var(--mono);
+}
+.health-diet-input-cell .unit {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ================================================================
+ * ⭐ 三列环形图容器
+ * ================================================================ */
+.health-charts-donut.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .health-charts-donut.three { grid-template-columns: 1fr; }
+}

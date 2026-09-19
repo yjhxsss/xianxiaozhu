@@ -1,0 +1,196 @@
+/* ============ timer 模块样式 ============ */
+.timer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .timer-grid { grid-template-columns: 1fr; }
+}
+
+.timer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timer-card.timer-running {
+  border-color: var(--accent);
+  animation: timerGlow 2.4s ease-in-out infinite;
+}
+.timer-card.timer-running.timer-break {
+  border-color: var(--success);
+}
+@keyframes timerGlow {
+  0%, 100% { box-shadow: 0 0 0 1px var(--accent-glow), 0 6px 24px var(--accent-glow); }
+  50% { box-shadow: 0 0 0 4px var(--accent-soft), 0 6px 40px var(--accent-glow); }
+}
+
+.timer-ring-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 8px 0;
+}
+.timer-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.timer-ring .ring-bg {
+  fill: none;
+  stroke: var(--bg-card-solid);
+  stroke-width: 8;
+}
+.timer-ring .ring-progress {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .3s linear, filter .3s ease;
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+.timer-ring .ring-progress.break {
+  stroke: var(--success);
+  filter: drop-shadow(0 0 6px rgba(74, 222, 128, .5));
+}
+
+.timer-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.timer-display {
+  font-size: 32px;
+  font-weight: 800;
+  font-family: var(--mono);
+  line-height: 1;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  transition: color .3s ease;
+}
+.timer-card.timer-running .timer-display {
+  color: var(--accent);
+  animation: timeGlow 2s ease-in-out infinite;
+}
+.timer-card.timer-running.timer-break .timer-display {
+  color: var(--success);
+}
+@keyframes timeGlow {
+  0%, 100% { text-shadow: 0 0 12px var(--accent-glow); }
+  50% { text-shadow: 0 0 28px var(--accent-glow); }
+}
+
+.timer-status {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.timer-card.timer-running .timer-status { color: var(--accent); }
+.timer-card.timer-running.timer-break .timer-status { color: var(--success); }
+
+.timer-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  width: 100%;
+}
+.timer-buttons .btn-primary { flex: 1; }
+
+.timer-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.timer-tag-row,
+.timer-preset-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.timer-tag {
+  padding: 5px 12px;
+  border-radius: 11px;
+  font-size: 11px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-sec);
+  font-weight: 600;
+  transition: var(--t);
+}
+.timer-tag:hover { border-color: var(--accent); color: var(--accent); }
+.timer-tag.selected { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 700; }
+
+.timer-input {
+  width: 70px;
+  padding: 6px 10px;
+  font-size: 13px;
+  text-align: center;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+/* 统计卡片 */
+.timer-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.timer-stat-tile {
+  background: var(--bg-input);
+  border-radius: 13px;
+  border: 1px solid var(--border);
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.timer-stat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.timer-stat-info { flex: 1; min-width: 0; }
+.timer-stat-label { font-size: 11px; color: var(--text-muted); font-weight: 700; }
+.timer-stat-value { font-size: 19px; font-weight: 800; font-family: var(--mono); line-height: 1.1; }
+.timer-stat-value .small-unit { font-size: 10px; color: var(--text-muted); font-weight: 600; margin-left: 2px; }
+
+/* 专注记录 */
+.focus-list { display: flex; flex-direction: column; gap: 6px; }
+.focus-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  background: var(--bg-input);
+  border-radius: 11px;
+  border: 1px solid var(--border);
+  font-size: 12.5px;
+  transition: var(--t);
+}
+.focus-item:hover { border-color: var(--border-l); transform: translateX(3px); }
+.focus-icon { font-size: 18px; }
+.focus-info { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.focus-dur { color: var(--accent); font-weight: 800; font-family: var(--mono); }
+.focus-time { color: var(--text-muted); font-family: var(--mono); font-size: 11px; }
+
+@media (max-width: 1200px) {
+  .timer-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

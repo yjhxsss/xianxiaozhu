@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>仙小助 · 生涯规划助手</title>
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#7c6cf8">
+<meta name="description" content="生涯规划与自我提升助手">
+<link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+<link rel="apple-touch-icon" href="./icons/icon.svg">
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="仙小助">
+
+<link rel="stylesheet" href="core/theme.css">
+<link rel="stylesheet" href="modules/diary/style.css">
+<link rel="stylesheet" href="modules/habitgoal/style.css">
+<link rel="stylesheet" href="modules/health/style.css">
+<link rel="stylesheet" href="modules/timer/style.css">
+<link rel="stylesheet" href="modules/calsch/style.css">
+<link rel="stylesheet" href="modules/summary/style.css">
+<link rel="stylesheet" href="modules/settings/style.css">
+<link rel="stylesheet" href="modules/auth/style.css">
+<link rel="stylesheet" href="modules/onboarding/style.css">
+<link rel="stylesheet" href="modules/review/style.css">
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="app.js"></script>
+
+<script>
+(function () {
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol === 'file:') return;
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js', { scope: './' })
+      .then(function (reg) {
+        console.log('[PWA] Service Worker 已注册，scope:', reg.scope);
+      })
+      .catch(function (err) {
+        console.warn('[PWA] Service Worker 注册失败:', err);
+      });
+  });
+})();
+</script>
+</body>
+</html>
