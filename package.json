@@ -16,6 +16,7 @@
     "electron-builder": "^24.13.3"
   },
   "build": {
+    "publish": null,
     "appId": "com.yang.xianxiaozhu",
     "productName": "仙小助",
     "directories": {
