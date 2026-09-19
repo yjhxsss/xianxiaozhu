@@ -45,17 +45,10 @@
     },
     "mac": {
       "target": [
-        { "target": "dmg", "arch": ["x64", "arm64"] },
         { "target": "zip", "arch": ["x64", "arm64"] }
       ],
       "category": "public.app-category.productivity"
     },
-    "dmg": {
-      "title": "仙小助",
-      "contents": [
-        { "x": 130, "y": 220, "type": "file" },
-        { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
-      ]
     }
   }
 }
